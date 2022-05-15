@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     "allauth.account",
     "allauth.socialaccount",
     "drf_yasg",
+    "django_filters",
 ]
 
 MIDDLEWARE = [
@@ -146,6 +147,10 @@ REST_FRAMEWORK = {
         "dj_rest_auth.jwt_auth.JWTCookieAuthentication",
     ),
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
+    "DEFAULT_FILTER_BACKENDS": (
+        "rest_framework.filters.SearchFilter",
+        "rest_framework.filters.OrderingFilter",
+    ),
 }
 REST_USE_JWT = True
 JWT_AUTH_COOKIE = "my-app-auth"

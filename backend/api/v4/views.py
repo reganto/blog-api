@@ -13,6 +13,13 @@ from api.permissions import (
 class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostSerializerDAB
+    search_fields = [
+        "title",
+        "body",
+        "author__username",
+    ]
+    ordering_fields = ("created_at",)
+    ordering = ("-created_at",)
 
     def get_permissions(self):
         permission_classes = [
@@ -34,6 +41,12 @@ class PostViewSet(viewsets.ModelViewSet):
 class CommentViewSet(viewsets.ModelViewSet):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializerDAB
+    search_fields = [
+        "body",
+        "owner__username",
+    ]
+    ordering_fields = ("created_at",)
+    ordering = ("-created_at",)
 
     def get_permissions(self):
         permission_classes = [
