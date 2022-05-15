@@ -15,6 +15,8 @@ v4.2: permissions(authorization)
 
 v4.3: openapi specification and documentation
 
+v4.4: basic filter, search and ordering
+
 Please discuss any changes in the [issues](https://github.com/reganto/blog-api/issues) before working on a PR to make sure that I'll accept it before you spend time working on it.
 
 tell.reganto[at]gmail[dot]com
