@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 
-from api.v4.serializers import PostSerializer, CommentSerializer
+from api.v4.serializers import PostSerializerDAB, CommentSerializerDAB
 from api.models import Post, Comment
 from api.permissions import (
     IsStaffOrReadOnly,
@@ -12,7 +12,7 @@ from api.permissions import (
 
 class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
-    serializer_class = PostSerializer
+    serializer_class = PostSerializerDAB
 
     def get_permissions(self):
         permission_classes = [
@@ -33,7 +33,7 @@ class PostViewSet(viewsets.ModelViewSet):
 
 class CommentViewSet(viewsets.ModelViewSet):
     queryset = Comment.objects.all()
-    serializer_class = CommentSerializer
+    serializer_class = CommentSerializerDAB
 
     def get_permissions(self):
         permission_classes = [

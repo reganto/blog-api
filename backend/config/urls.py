@@ -16,6 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from dj_rest_auth.views import PasswordResetConfirmView
+from rest_framework import permissions
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
 
 # def account_confirm_email(request, key):
 #     return render(request, "api/account-confirm-email.html", {"key": key})
@@ -26,6 +29,22 @@ from dj_rest_auth.views import PasswordResetConfirmView
 # {% csrf_token %}
 # <input type="text" name="key" id="key" value="{{ key }}" hidden="hidden" />
 # </form>
+
+schema_view = get_schema_view(
+    openapi.Info(
+        title="Blog API",
+        default_version="v4",
+        description="Blog API :: For Fun and Learn",
+        terms_of_service="https://github.com/reganto/blog-api",
+        contact=openapi.Contact(email="tell.reganto@gmail.com"),
+        license=openapi.License(
+            name="Apache 2 License",
+            url="https://www.apache.org/licenses/LICENSE-2.0",
+        ),
+    ),
+    public=True,
+    permission_classes=(permissions.AllowAny,),
+)
 
 
 urlpatterns = [
@@ -46,5 +65,15 @@ urlpatterns = [
         "api/auth/password-reset-confirm/<uid64>/<token>/",
         PasswordResetConfirmView.as_view(),
         name="password_reset_confirm",
+    ),
+    path(
+        "swagger/",
+        schema_view.with_ui("swagger", cache_timeout=0),
+        name="schema-swagger-ui",
+    ),
+    path(
+        "redoc/",
+        schema_view.with_ui("redoc", cache_timeout=0),
+        name="schema-redoc",
     ),
 ]
