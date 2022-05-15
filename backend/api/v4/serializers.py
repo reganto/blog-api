@@ -3,13 +3,13 @@ from rest_framework import serializers
 from api.models import Post, Comment
 
 
-class PostSerializer(serializers.ModelSerializer):
+class PostSerializerDAB(serializers.ModelSerializer):
     class Meta:
         model = Post
         exclude = ("updated_at",)
 
 
-class CommentSerializer(serializers.ModelSerializer):
+class CommentSerializerDAB(serializers.ModelSerializer):
     class Meta:
         model = Comment
         exclude = ("updated_at",)
